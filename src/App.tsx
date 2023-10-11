@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {getTasks} from './api/tasks';
+import NewTask from './components/NewTask';
 
 function App() {
 
@@ -9,12 +10,19 @@ useEffect(() => {
     getTasks(setTasks)
 },[])
 
+  const handleNewTask = (task: string) => {
+      // @ts-ignore
+      setTasks( [...tasks, task])
+  }
 
-  console.log(tasks)
+  const handleDeleteTask = (id: number) => {
+      // @ts-ignore
+      setTasks(tasks.filter(task => task.id !== id))
+  }
 
-  return (
+    return (
   <div>
-    Hello
+      <NewTask handleNewTask={handleNewTask}/>
   </div>
   );
 }
