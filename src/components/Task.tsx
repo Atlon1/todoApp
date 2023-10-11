@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Task = () => {
+const Task = ({task, handleDeleteTask} : {task: any, handleDeleteTask: (id: number) => void}) => {
     return (
         <div>
             Task
