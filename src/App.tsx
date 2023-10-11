@@ -22,12 +22,11 @@ useEffect(() => {
   }
 
   const handleDeleteTask = (id: number) => {
-      // @ts-ignore
       setTasks(tasks.filter(task => task.id !== id))
   }
 
     return (
-  <div>
+  <div className='flex flex-col'>
       <NewTask handleNewTask={handleNewTask}/>
       {tasks.map(task => (
           <Task key={task.id} task={task} handleDeleteTask={handleDeleteTask}/>
