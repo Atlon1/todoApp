@@ -2,10 +2,13 @@ import React, {useState} from 'react';
 import {createTask} from '../api/tasks';
 
 
+
 const NewTask = ({handleNewTask}: { handleNewTask: (task: string) => void }) => {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
+
+
 
     const handleAddTask = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -15,6 +18,7 @@ const NewTask = ({handleNewTask}: { handleNewTask: (task: string) => void }) => 
             description,
             status: 'open'
         }
+
 
         createTask(task, handleNewTask)
         console.log(task)

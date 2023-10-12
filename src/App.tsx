@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {getTasks} from './api/tasks';
 import NewTask from './components/NewTask';
+// @ts-ignore
 import Task from './components/Task';
 
 type Task = {
@@ -16,6 +17,8 @@ useEffect(() => {
     getTasks(setTasks)
 },[])
 
+    console.log(tasks)
+
   const handleNewTask = (task: string) => {
       // @ts-ignore
       setTasks( [...tasks, task])
@@ -25,10 +28,12 @@ useEffect(() => {
       setTasks(tasks.filter(task => task.id !== id))
   }
 
+
     return (
   <div className='flex flex-col'>
       <NewTask handleNewTask={handleNewTask}/>
       {tasks.map(task => (
+          //@ts-ignore
           <Task key={task.id} task={task} handleDeleteTask={handleDeleteTask}/>
       ))}
   </div>
