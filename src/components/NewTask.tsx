@@ -26,7 +26,6 @@ const NewTask = ({handleNewTask}: { handleNewTask: (task: string) => void }) => 
         setDescription('')
 
     }
-    console.log(title, description)
 
     return (
         <section className='container mx-auto w-full h-full border border-gray-200 mt-[15px] shadow rounded p-6'>
