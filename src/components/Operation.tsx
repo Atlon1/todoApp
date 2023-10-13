@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {deleteOperation, updateOperation} from "../api/operations";
-import {FaSave, FaTrashAlt} from 'react-icons/fa'
+import {FaSave, FaTrashAlt, FaTimes, FaClock} from 'react-icons/fa'
 
 
 type OperationProps = {
@@ -21,8 +21,9 @@ const Operation = ({description, id, onRemoveOperation, timeSpent: _timeSpent, s
         e.preventDefault()
         // @ts-ignore
         if (isNaN(parseInt(timeSpentInput) || timeSpentInput < 0)) {
-            return
+            return;
         }
+
 
         const operation = {
             description,
@@ -46,27 +47,35 @@ const Operation = ({description, id, onRemoveOperation, timeSpent: _timeSpent, s
 
 
     return (
-        <li>
-            <div>
+        <li className='flex flex-row justify-between items-center py-4 px-4 border border-gray-600 m-2'>
+            <div className='flex flex-row gap-2 justify-center items-center'>
                 {description}
                 {timeSpent > 0 && (
-                    <span>
+                    <span className='text-[13px] text-white bg-emerald-600 rounded p-[2px]'>
                         {hours}h {minutes}m
                     </span>
                 )}
             </div>
 
             {timeSpentForm && (
-                <form onSubmit={handleTimeSave}>
-                    <div>
-                        <input type='number'
+                <form
+                    onSubmit={handleTimeSave}>
+                    <div className='flex flex-row justify-center items-center'>
+                        <input
+                            className='border border-gray-600 p-[2px] '
+                            type='number'
                                value={timeSpentInput}
                                placeholder='Spent Time in minutes'
                                onChange={(e) => setTimeSpentInput(e.target.value)}
                         />
-                        <div>
-                            <button onClick={(e) => setTimeSpentForm(false)}>
-                                <FaSave/>
+                        <div className=''>
+                           <button
+                               className='p-[6px] border border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white duration-500'
+                               type='submit'><FaSave/></button>
+                            <button
+                                className='p-[6px] border border-red-600 text-red-600 hover:bg-red-600 hover:text-white duration-500'
+                                onClick={(e) => setTimeSpentForm(false)}>
+                                <FaTimes/>
                             </button>
                         </div>
                     </div>
@@ -74,13 +83,17 @@ const Operation = ({description, id, onRemoveOperation, timeSpent: _timeSpent, s
             )}
 
             {!timeSpentForm && (
-                <div>
+                <div className='flex flex-row gap-2 items-center justify-center'>
                     {status === 'open' && (
-                        <button onClick={(e) => setTimeSpentForm(true)}>
-                            Add time
-                            <FaTrashAlt/>
+                        <button className='bg-white text-emerald-600 border border-emerald-600 p-2 flex justify-center
+                        items-center gap-x-2 rounded hover:bg-emerald-600 hover:text-white duration-500' onClick={() => setTimeSpentForm(true)}>
+                            Add Time
+                            <FaClock/>
                         </button>
                     )}
+                    <button
+                        className='bg-white text-red-600 border border-red-600 p-3 flex justify-center items-center gap-x-2 rounded hover:bg-red-600 hover:text-white duration-500'
+                        onClick={handleRemoveOperation}><FaTrashAlt/></button>
                 </div>
             )}
         </li>

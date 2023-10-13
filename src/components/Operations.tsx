@@ -14,8 +14,8 @@ type OperationsProps = {
 const Operations = ({taskID, form, setForm, operations, setOperations, status}: OperationsProps) => {
 
     const [operationDescription, setOperationDescription] = useState("");
-    const handleNewOperation = () => {
-
+    const handleNewOperation = (e: any) => {
+        e.preventDefault()
         const operation = {
             description: operationDescription,
             timeSpent: 0,
@@ -62,7 +62,7 @@ const Operations = ({taskID, form, setForm, operations, setOperations, status}: 
             )}
             <ul>
                 {operations.map((operation) => (
-                    <div>
+                    <div key={operation.id}>
                         <Operation key={operation.id} {...operation} onRemoveOperation={handleRemoveOperation} status={status}/>
                     </div>
                 ))}
