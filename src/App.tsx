@@ -17,7 +17,6 @@ useEffect(() => {
     getTasks(setTasks)
 },[])
 
-    console.log(tasks)
 
   const handleNewTask = (task: string) => {
       // @ts-ignore

@@ -21,7 +21,6 @@ const NewTask = ({handleNewTask}: { handleNewTask: (task: string) => void }) => 
 
 
         createTask(task, handleNewTask)
-        console.log(task)
 
         setTitle('')
         setDescription('')

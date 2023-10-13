@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {createOperation} from "../api/operations";
+import {HiOutlinePlusCircle} from 'react-icons/hi'
 import Operation from "./Operation";
 
 type OperationsProps = {
@@ -33,20 +34,27 @@ const Operations = ({taskID, form, setForm, operations, setOperations, status}: 
         setOperations(operations.filter(operation => operation.id !== id))
     }
 
-    // @ts-ignore
     return (
         <>
             {form && (
-                <div>
-                    <form>
-                        <div>
+                <div className='flex flex-col py-2 w-full h-full'>
+                    <form className='flex flex-col'>
+                        <div className='flex gap-3'>
                             <input
+                                className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4
+                                text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500'
                                 type='text'
                                 placeholder='Operation description'
                                 value={operationDescription}
                                 onChange={(e) => setOperationDescription(e.target.value)}/>
-                            <div>
-                                <button onClick={handleNewOperation}>Add operation</button>
+                            <div className='flex'>
+                                <button
+                                    className='bg-emerald-600 hover:bg-blue-700 text-white font-bold py-2 px-4
+                                    rounded text-[10px] duration-500 flex items-center gap-2'
+                                    onClick={handleNewOperation}>
+                                    <HiOutlinePlusCircle className='text-[15px]'/>
+                                    Add operation
+                                </button>
                             </div>
                         </div>
                     </form>
